@@ -27,8 +27,9 @@ export const getJoyaById = (id) => {
 };
 
 export const fieldsSelect = (joya, fields) => {
+  const filterJoya = {...joya}
   const Fields = fields.split(',');
-  const properties = Object.keys(joya);
+  const properties = Object.keys(filterJoya);
   const check = Fields.every((field) => properties.includes(field));
   
   if (!check) {
@@ -38,11 +39,11 @@ export const fieldsSelect = (joya, fields) => {
     };
   }
 
-  for (let field in joya) {
-    if (!Fields.includes(field)) delete joya[field];
+  for (let field in filterJoya) {
+    if (!Fields.includes(field)) delete filterJoya[field];
   }
   
-  return joya;
+  return filterJoya;
 };
 
 export const filtroCategory = (category) => {
